@@ -1,0 +1,220 @@
+{
+    "title": "Service Consumer Management",
+    "description": "Manages the service consumers of a Service Infrastructure service.",
+    "docsUrl": "https://cloud.google.com/service-consumer-management/docs/overview",
+    "url": "https://api.apis.guru/v2/specs/googleapis.com/serviceconsumermanagement/v1/swagger.json",
+    "envVars": {
+        "OAUTH_CLIENT_ID": {
+            "description": "OAuth Client ID"
+        },
+        "OAUTH_CLIENT_SECRET": {
+            "description": "OAuth Client Secret"
+        }
+    },
+    "credentials": {
+        "fields": {
+            "server": {
+                "label": "Server",
+                "viewClass": "SelectView",
+                "model": [
+                    "https://serviceconsumermanagement.googleapis.com/",
+                    "--- Custom URL"
+                ],
+                "required": true
+            },
+            "otherServer": {
+                "label": "Custom Server URL",
+                "viewClass": "TextFieldView"
+            },
+            "Oauth2": {
+                "label": "Oauth 2.0 authentication",
+                "viewClass": "OAuthFieldView"
+            }
+        },
+        "oauth2": {
+            "client_id": "{{OAUTH_CLIENT_ID}}",
+            "client_secret": "{{OAUTH_CLIENT_SECRET}}",
+            "auth_uri": "https://accounts.google.com/o/oauth2/auth"
+        }
+    },
+    "triggers": {
+        "startFlow": {
+            "main": "./lib/triggers/startFlow.js",
+            "type": "polling",
+            "title": "Start Flow",
+            "fields": {}
+        }
+    },
+    "actions": {
+        "serviceconsumermanagement_services_tenancyUnits_delete": {
+            "main": "./lib/actions/serviceconsumermanagement_services_tenancyUnits_delete.js",
+            "title": "Delete a tenancy unit.  Before the tenancy unit is deleted, there should be\nno tenant resources in it not in DELETED state.\nOperation<response: Empty>.",
+            "description": "Delete a tenancy unit.  Before the tenancy unit is deleted, there should be\nno tenant resources in it not in DELETED state.\nOperation<response: Empty>.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/serviceconsumermanagement_services_tenancyUnits_delete.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "serviceconsumermanagement_operations_get": {
+            "main": "./lib/actions/serviceconsumermanagement_operations_get.js",
+            "title": "Gets the latest state of a long-running operation.  Clients can use this\nmethod to poll the operation result at intervals as recommended by the API\nservice.",
+            "description": "Gets the latest state of a long-running operation.  Clients can use this\nmethod to poll the operation result at intervals as recommended by the API\nservice.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/serviceconsumermanagement_operations_get.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "serviceconsumermanagement_services_tenancyUnits_applyProjectConfig": {
+            "main": "./lib/actions/serviceconsumermanagement_services_tenancyUnits_applyProjectConfig.js",
+            "title": "Apply configuration to an existing tenant project.\nThis project must exist in active state and have the original owner\naccount. Caller must have the permission to add a project to the given\ntenancy unit. Configuration will be applied, but any existing settings on\nthe project will not be modified.\nSpecified policy bindings will be applied. Existing binding will not be\nmodified.\nSpecified services will be activated.   No service will be deactivated.\nNew billing configuration will be applied if specified.\nOmit billing configuration to keep the existing one.\nService account in the project will be created if previously non existing.\nSpecified folder will be ignored, moving tenant project to a different\nfolder is not supported.\nOperation fails if any of the steps fail, but no rollback of already\napplied configuration changes is attempted.\nOperation<response: Empty>.",
+            "description": "Apply configuration to an existing tenant project.\nThis project must exist in active state and have the original owner\naccount. Caller must have the permission to add a project to the given\ntenancy unit. Configuration will be applied, but any existing settings on\nthe project will not be modified.\nSpecified policy bindings will be applied. Existing binding will not be\nmodified.\nSpecified services will be activated.   No service will be deactivated.\nNew billing configuration will be applied if specified.\nOmit billing configuration to keep the existing one.\nService account in the project will be created if previously non existing.\nSpecified folder will be ignored, moving tenant project to a different\nfolder is not supported.\nOperation fails if any of the steps fail, but no rollback of already\napplied configuration changes is attempted.\nOperation<response: Empty>.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/serviceconsumermanagement_services_tenancyUnits_applyProjectConfig.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "serviceconsumermanagement_services_tenancyUnits_attachProject": {
+            "main": "./lib/actions/serviceconsumermanagement_services_tenancyUnits_attachProject.js",
+            "title": "Attach an existing project to the tenancy unit as a new tenant\nresource. The project could be either the tenant project reserved by\ncalling AddTenantProject under tenancy unit for the producer project of\nservice, or from outside.\nCaller will be checked against the permission as if calling\nAddTenantProject on the same consumer.\nTo trigger the attachement, the targeted tenant project must be in a\nfolder. Please also make sure ServiceConsumerManagement service account is\nthe owner of that project. Note that these two requirements are already met\nif the project is reserved through AddTenantProject.\nOperation<response: Empty>.",
+            "description": "Attach an existing project to the tenancy unit as a new tenant\nresource. The project could be either the tenant project reserved by\ncalling AddTenantProject under tenancy unit for the producer project of\nservice, or from outside.\nCaller will be checked against the permission as if calling\nAddTenantProject on the same consumer.\nTo trigger the attachement, the targeted tenant project must be in a\nfolder. Please also make sure ServiceConsumerManagement service account is\nthe owner of that project. Note that these two requirements are already met\nif the project is reserved through AddTenantProject.\nOperation<response: Empty>.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/serviceconsumermanagement_services_tenancyUnits_attachProject.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "serviceconsumermanagement_operations_cancel": {
+            "main": "./lib/actions/serviceconsumermanagement_operations_cancel.js",
+            "title": "Starts asynchronous cancellation on a long-running operation.  The server\nmakes a best effort to cancel the operation, but success is not\nguaranteed.  If the server doesn't support this method, it returns\n`google.rpc.Code.UNIMPLEMENTED`.  Clients can use\nOperations.GetOperation or\nother methods to check whether the cancellation succeeded or whether the\noperation completed despite cancellation. On successful cancellation,\nthe operation is not deleted; instead, it becomes an operation with\nan Operation.error value with a google.rpc.Status.code of 1,\ncorresponding to `Code.CANCELLED`.",
+            "description": "Starts asynchronous cancellation on a long-running operation.  The server\nmakes a best effort to cancel the operation, but success is not\nguaranteed.  If the server doesn't support this method, it returns\n`google.rpc.Code.UNIMPLEMENTED`.  Clients can use\nOperations.GetOperation or\nother methods to check whether the cancellation succeeded or whether the\noperation completed despite cancellation. On successful cancellation,\nthe operation is not deleted; instead, it becomes an operation with\nan Operation.error value with a google.rpc.Status.code of 1,\ncorresponding to `Code.CANCELLED`.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/serviceconsumermanagement_operations_cancel.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "serviceconsumermanagement_services_tenancyUnits_removeProject": {
+            "main": "./lib/actions/serviceconsumermanagement_services_tenancyUnits_removeProject.js",
+            "title": "Removes specified project resource identified by tenant resource tag.\nIt will remove project lien with 'TenantManager' origin if that was added.\nIt will then attempt to delete the project. If that operation fails, this\nmethod fails.\nCalls to remove already removed or non-existent tenant project\nwill succeed.\nAfter the project has been deleted, or if was already in DELETED state,\nresource metadata is permanently removed from the tenancy unit.\nOperation<response: Empty>.",
+            "description": "Removes specified project resource identified by tenant resource tag.\nIt will remove project lien with 'TenantManager' origin if that was added.\nIt will then attempt to delete the project. If that operation fails, this\nmethod fails.\nCalls to remove already removed or non-existent tenant project\nwill succeed.\nAfter the project has been deleted, or if was already in DELETED state,\nresource metadata is permanently removed from the tenancy unit.\nOperation<response: Empty>.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/serviceconsumermanagement_services_tenancyUnits_removeProject.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "serviceconsumermanagement_services_tenancyUnits_list": {
+            "main": "./lib/actions/serviceconsumermanagement_services_tenancyUnits_list.js",
+            "title": "Find the tenancy unit for a service and consumer.\nThis method should not be used in producers' runtime path, for example\nfinding the tenant project number when creating VMs. Producers should\npersist the tenant project information after the project is created.",
+            "description": "Find the tenancy unit for a service and consumer.\nThis method should not be used in producers' runtime path, for example\nfinding the tenant project number when creating VMs. Producers should\npersist the tenant project information after the project is created.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/serviceconsumermanagement_services_tenancyUnits_list.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "serviceconsumermanagement_services_tenancyUnits_create": {
+            "main": "./lib/actions/serviceconsumermanagement_services_tenancyUnits_create.js",
+            "title": "Creates a tenancy unit with no tenant resources.",
+            "description": "Creates a tenancy unit with no tenant resources.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/serviceconsumermanagement_services_tenancyUnits_create.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "serviceconsumermanagement_services_tenancyUnits_addProject": {
+            "main": "./lib/actions/serviceconsumermanagement_services_tenancyUnits_addProject.js",
+            "title": "Add a new tenant project to the tenancy unit.\nThere can be at most 512 tenant projects in a tenancy unit.\nIf there are previously failed `AddTenantProject` calls, you might need to\ncall `RemoveTenantProject` first to clean them before you can make another\n`AddTenantProject` with the same tag.\nOperation<response: Empty>.",
+            "description": "Add a new tenant project to the tenancy unit.\nThere can be at most 512 tenant projects in a tenancy unit.\nIf there are previously failed `AddTenantProject` calls, you might need to\ncall `RemoveTenantProject` first to clean them before you can make another\n`AddTenantProject` with the same tag.\nOperation<response: Empty>.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/serviceconsumermanagement_services_tenancyUnits_addProject.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "serviceconsumermanagement_services_search": {
+            "main": "./lib/actions/serviceconsumermanagement_services_search.js",
+            "title": "Search tenancy units for a service.",
+            "description": "Search tenancy units for a service.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/serviceconsumermanagement_services_search.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        }
+    }
+}

@@ -1,0 +1,134 @@
+{
+    "type": "object",
+    "properties": {
+        "name": {
+            "required": true,
+            "type": "string"
+        },
+        "access_token": {
+            "type": "string"
+        },
+        "alt": {
+            "type": "string",
+            "enum": [
+                "json",
+                "media",
+                "proto"
+            ],
+            "default": "json"
+        },
+        "callback": {
+            "type": "string"
+        },
+        "fields": {
+            "type": "string"
+        },
+        "key": {
+            "type": "string"
+        },
+        "oauth_token": {
+            "type": "string"
+        },
+        "prettyPrint": {
+            "type": "boolean",
+            "default": true
+        },
+        "quotaUser": {
+            "type": "string"
+        },
+        "uploadType": {
+            "type": "string"
+        },
+        "upload_protocol": {
+            "type": "string"
+        },
+        "requestBody": {
+            "description": "Request to apply configuration to an existing tenant project.",
+            "properties": {
+                "projectConfig": {
+                    "description": "Configuration that should be applied to the existing tenant project.",
+                    "properties": {
+                        "billingConfig": {
+                            "description": "Billing account properties.  Billing account must be specified.",
+                            "properties": {
+                                "billingAccount": {
+                                    "description": "Name of the billing account.\nFor example `billingAccounts/012345-567890-ABCDEF`.",
+                                    "type": "string"
+                                }
+                            },
+                            "type": "object"
+                        },
+                        "folder": {
+                            "description": "Folder where project in this tenancy unit must be located\nThis folder must have been previously created with proper\npermissions for the caller to create and configure a project in it.\nValid folder resource names have the format `folders/{folder_number}`\n(for example, `folders/123456`).",
+                            "type": "string"
+                        },
+                        "labels": {
+                            "additionalProperties": {
+                                "type": "string"
+                            },
+                            "description": "Labels that will be applied to this project.",
+                            "type": "object"
+                        },
+                        "serviceAccountConfig": {
+                            "description": "Configuration for IAM service account on tenant project.",
+                            "properties": {
+                                "accountId": {
+                                    "description": "ID of the IAM service account to be created in tenant project.\nThe email format of the service account will be\n\"<account-id>@<tenant-project-id>.iam.gserviceaccount.com\".\nThis account id has to be unique within tenant project and producers\nhave to guarantee it. And it must be 6-30 characters long, and matches the\nregular expression `[a-z]([-a-z0-9]*[a-z0-9])`.",
+                                    "type": "string"
+                                },
+                                "tenantProjectRoles": {
+                                    "description": "Roles for the associated service account for the tenant project.",
+                                    "items": {
+                                        "type": "string"
+                                    },
+                                    "type": "array"
+                                }
+                            },
+                            "type": "object"
+                        },
+                        "services": {
+                            "description": "Google Cloud API names of services that will be activated on this project\nduring provisioning.  If any of these services can not be activated,\nrequest will fail.\nFor example: 'compute.googleapis.com','cloudfunctions.googleapis.com'",
+                            "items": {
+                                "type": "string"
+                            },
+                            "type": "array"
+                        },
+                        "tenantProjectPolicy": {
+                            "description": "Describes ownership and policies for the new tenant project. Required.",
+                            "properties": {
+                                "policyBindings": {
+                                    "description": "Policy bindings to be applied to the tenant project, in addition to the\n'roles/owner' role granted to the Service Consumer Management service\naccount.\nAt least one binding must have the role `roles/owner`. Among the list of\nmembers for `roles/owner`, at least one of them must be either `user` or\n`group` type.",
+                                    "items": {
+                                        "description": "Translates to IAM Policy bindings (without auditing at this level)",
+                                        "properties": {
+                                            "members": {
+                                                "description": "Uses the same format as in IAM policy.\n`member` must include both prefix and ID. For example, `user:{emailId}`,\n`serviceAccount:{emailId}`, `group:{emailId}`.",
+                                                "items": {
+                                                    "type": "string"
+                                                },
+                                                "type": "array"
+                                            },
+                                            "role": {
+                                                "description": "Role. (https://cloud.google.com/iam/docs/understanding-roles)\nFor example, `roles/viewer`, `roles/editor`, or `roles/owner`.",
+                                                "type": "string"
+                                            }
+                                        },
+                                        "type": "object"
+                                    },
+                                    "type": "array"
+                                }
+                            },
+                            "type": "object"
+                        }
+                    },
+                    "type": "object"
+                },
+                "tag": {
+                    "description": "Tag of the project. Must be less than 128 characters. Required.",
+                    "type": "string"
+                }
+            },
+            "type": "object"
+        }
+    }
+}

@@ -1,0 +1,64 @@
+{
+    "type": "object",
+    "properties": {
+        "name": {
+            "required": true,
+            "type": "string"
+        },
+        "access_token": {
+            "type": "string"
+        },
+        "alt": {
+            "type": "string",
+            "enum": [
+                "json",
+                "media",
+                "proto"
+            ],
+            "default": "json"
+        },
+        "callback": {
+            "type": "string"
+        },
+        "fields": {
+            "type": "string"
+        },
+        "key": {
+            "type": "string"
+        },
+        "oauth_token": {
+            "type": "string"
+        },
+        "prettyPrint": {
+            "type": "boolean",
+            "default": true
+        },
+        "quotaUser": {
+            "type": "string"
+        },
+        "uploadType": {
+            "type": "string"
+        },
+        "upload_protocol": {
+            "type": "string"
+        },
+        "requestBody": {
+            "description": "Request to attach an existing project to the tenancy unit as a new tenant\nresource.",
+            "properties": {
+                "externalResource": {
+                    "description": "When attaching an external project, this is in the format of\n`projects/{project_number}’.",
+                    "type": "string"
+                },
+                "reservedResource": {
+                    "description": "When attaching a reserved project already in Tenancy Units, this is the\ntag of tenant resource under the tenancy unit for the service's producer\nproject. The reserved tenant resource must be in active state.",
+                    "type": "string"
+                },
+                "tag": {
+                    "description": "Tag of the tenant resource after attachment.\nMust be less than 128 characters. Required.",
+                    "type": "string"
+                }
+            },
+            "type": "object"
+        }
+    }
+}
